@@ -1,0 +1,30 @@
+{
+  "name": "micro-frontends",
+  "author": "Nathaniel C. Hall",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "description": "",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/nathanielhall/micro-frontends.git"
+  },
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
+  },
+  "scripts": {
+    "start": "yarn workspaces foreach -pi run start",
+    "build": "yarn workspaces foreach -pti run build",
+    "start:app1": "yarn workspace @micro-frontends/app1 run start",
+    "start:app2": "yarn workspace @micro-frontends/app2 run start"
+  },
+  "keywords": [
+    "micro-frontend",
+    "react",
+    "single-spa",
+    "starter"
+  ]
+}
