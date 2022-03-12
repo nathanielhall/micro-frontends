@@ -1,57 +1,51 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
-const path = require('path')
-const APP_PATH = path.resolve(__dirname, 'src')
+const deps = require('./package.json').dependencies
 
 module.exports = {
   mode: 'development',
-  entry: './src/index',
-
-  output: {
-    filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist'),
-    publicPath: 'http://localhost:3001/'
-  },
-
-  resolve: {
-    extensions: ['.tsx', '.ts', '.js', '.jsx'],
-    alias: {
-      components: path.resolve(__dirname, './src/components/'),
-      src: path.resolve(__dirname, './src/')
+  devServer: {
+    port: 8081,
+    historyApiFallback: {
+      index: 'index.html'
     }
   },
-
+  resolve: {
+    extensions: ['.tsx', '.ts', '.js', '.jsx']
+  },
   module: {
     rules: [
       {
-        test: /\.(ts)x?$/,
-        exclude: [
-          /dist/,
-          /node_modules/,
-          /\\.test\\.tsx?$/,
-          /__tests__/,
-          /typings/
-        ],
-        use: [{ loader: 'ts-loader' }]
+        test: /\.tsx?$/,
+        loader: 'babel-loader',
+        exclude: /node_modules/
       }
     ]
   },
-
   plugins: [
     new ModuleFederationPlugin({
       name: 'app1',
-      library: { type: 'var', name: 'app1' },
       filename: 'remoteEntry.js',
-      remotes: {
-      },
       exposes: {
-        app1: './src/index',
+          './App1': './src/App',
       },
-      shared: ['react', 'react-dom', 'single-spa-react']
+      shared: [
+          {
+              ...deps,
+              react: {
+                  singleton: true,
+                  requiredVersion: deps.react,
+              },
+              'react-dom': {
+                  singleton: true,
+                  requiredVersion: deps['react-dom'],
+              },
+          },
+      ],
     }),
-    new HtmlWebpackPlugin({
-      template: path.join(__dirname, './src/index.html')
-    })
+      new HtmlWebpackPlugin({
+        template: './public/index.html'
+      })
   ]
 }

@@ -1,15 +1,7 @@
-import React, {FC} from 'react'
-import singleSpaReact from 'single-spa-react'
-import ReactDOM from 'react-dom';
-
-export const App2: FC = () => {
-  return (<span>App 2</span>)
-}
-
-const lifecycles = singleSpaReact({
-  React,
-  ReactDOM,
-  rootComponent: App2
-});
-
-export const {bootstrap, mount, unmount} = lifecycles
+/*
+ * Dynamically imports the boostrap file - thereby creating an asynchronous boundary. For more information see
+ * https://webpack.js.org/concepts/module-federation/
+ *
+ * This gives webpack an opportunity to fetch dependencies before executing the bootstrap code.
+ */
+import('./bootstrap');
