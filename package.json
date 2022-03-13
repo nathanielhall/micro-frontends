@@ -16,6 +16,7 @@
     ]
   },
   "scripts": {
+    "start": "lerna run start --parallel",
     "build": "lerna run build --concurrency=1",
     "serve": "lerna run serve --concurrency=1",
     "clean": "scripty"

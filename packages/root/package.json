@@ -5,7 +5,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "webpack-cli serve ",
+    "start": "webpack-dev-server --config webpack.config.js --progress --open --mode=development",
     "build": "webpack",
     "serve": "serve dist",
     "lint": "eslint . --ext .ts,.tsx",
