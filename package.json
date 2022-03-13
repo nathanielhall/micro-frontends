@@ -18,7 +18,10 @@
   "scripts": {
     "build": "lerna run build --concurrency=1",
     "serve": "lerna run serve --concurrency=1",
-    "clean": "yarn lerna run clean --parallel"
+    "clean": "scripty"
+  },
+  "scripty": {
+    "path": "./scripts/workspace"
   },
   "keywords": [
     "micro-frontend",
@@ -42,6 +45,7 @@
     "lerna": "^4.0.0",
     "prettier": "^2.5.1",
     "rimraf": "^3.0.2",
+    "scripty": "^2.0.0",
     "wsrun": "^5.2.0"
   }
 }
