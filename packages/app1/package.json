@@ -8,11 +8,7 @@
     "start": "webpack-cli serve ",
     "build": "webpack",
     "serve": "serve dist",
-    "lint": "eslint . --ext .ts,.tsx",
-    "test": "jest",
-    "test:coverage": "jest --coverage",
-    "test:watch": "jest --watch",
-    "prettier": "prettier --write \"./**/*.{json,ts,tsx,scss}\""
+    "lint": "eslint . --ext .ts,.tsx"
   },
   "devDependencies": {
     "@babel/core": "^7.17.5",
