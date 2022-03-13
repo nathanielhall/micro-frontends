@@ -16,9 +16,9 @@
     ]
   },
   "scripts": {
-    "build": "yarn workspaces run build",
-    "serve": "wsrun --parallel serve",
-    "start": "concurrently \"wsrun --parallel start\""
+    "build": "lerna run build --concurrency=1",
+    "serve": "lerna run serve --concurrency=1",
+    "clean": "yarn lerna run clean --parallel"
   },
   "keywords": [
     "micro-frontend",
@@ -39,7 +39,9 @@
     "eslint-plugin-react": "^7.29.3",
     "eslint-plugin-react-hooks": "^4.3.0",
     "eslint-plugin-unicorn": "^41.0.0",
+    "lerna": "^4.0.0",
     "prettier": "^2.5.1",
+    "rimraf": "^3.0.2",
     "wsrun": "^5.2.0"
   }
 }

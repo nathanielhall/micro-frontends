@@ -8,7 +8,9 @@
     "start": "webpack-cli serve ",
     "build": "webpack",
     "serve": "serve dist",
-    "lint": "eslint . --ext .ts,.tsx"
+    "lint": "eslint . --ext .ts,.tsx",
+    "clean": "rimraf dist *.tsbuildinfo"
+
   },
   "devDependencies": {
     "@babel/core": "^7.17.5",
